@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ff7ca8">
+  <title>建伟 ❤ 婷婷 | 我们的恋爱空间</title>
+  <style>
+    :root{
+      --bg:#fff7fb;
+      --bg-2:#fff1f5;
+      --card:rgba(255,255,255,.84);
+      --card-strong:rgba(255,255,255,.96);
+      --text:#533644;
+      --text-soft:#876878;
+      --primary:#ff6e9f;
+      --primary-2:#ffa6bf;
+      --accent:#ffc66d;
+      --success:#58b883;
+      --danger:#ff6b76;
+      --line:rgba(255,110,159,.16);
+      --shadow:0 18px 45px rgba(203,100,142,.16);
+      --shadow-soft:0 10px 24px rgba(203,100,142,.12);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --maxw:1180px;
+      --hero-gradient:radial-gradient(circle at 12% 18%, rgba(255,110,159,.24), transparent 26%), radial-gradient(circle at 88% 16%, rgba(255,198,109,.24), transparent 20%), linear-gradient(135deg,#fff9fc 0%,#fff2f7 55%,#fff9ef 100%);
+      --bg-gradient:linear-gradient(135deg,#fff9fb 0%,#fff3f8 45%,#fffaf1 100%);
+    }
+    body.theme-cream{
+      --bg:#fff9f3;
+      --bg-2:#fff2e7;
+      --card:rgba(255,252,248,.86);
+      --card-strong:rgba(255,253,251,.97);
+      --text:#5c473f;
+      --text-soft:#8c7066;
+      --primary:#e78f7e;
+      --primary-2:#f3b3a3;
+      --accent:#f2bc73;
+      --line:rgba(231,143,126,.16);
+      --shadow:0 18px 45px rgba(177,125,94,.16);
+      --shadow-soft:0 10px 24px rgba(177,125,94,.12);
+      --hero-gradient:radial-gradient(circle at 12% 18%, rgba(231,143,126,.22), transparent 26%), radial-gradient(circle at 88% 16%, rgba(242,188,115,.22), transparent 20%), linear-gradient(135deg,#fffaf7 0%,#fff4ef 55%,#fffaf3 100%);
+      --bg-gradient:linear-gradient(135deg,#fffaf6 0%,#fff3eb 45%,#fffaf1 100%);
+    }
+    body.theme-night{
+      --bg:#171927;
+      --bg-2:#1f2234;
+      --card:rgba(34,38,60,.74);
+      --card-strong:rgba(40,44,68,.94);
+      --text:#f7eef6;
+      --text-soft:#c3bad0;
+      --primary:#ff86b4;
+      --primary-2:#ffb0cb;
+      --accent:#f3ca73;
+      --line:rgba(255,134,180,.18);
+      --shadow:0 18px 45px rgba(7,11,20,.38);
+      --shadow-soft:0 10px 24px rgba(7,11,20,.28);
+      --hero-gradient:radial-gradient(circle at 12% 18%, rgba(255,134,180,.18), transparent 26%), radial-gradient(circle at 88% 16%, rgba(243,202,115,.15), transparent 20%), linear-gradient(135deg,#1b1e2c 0%,#23263a 55%,#2e2542 100%);
+      --bg-gradient:linear-gradient(135deg,#171a27 0%,#202335 45%,#2a2542 100%);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+      color:var(--text);
+      background:var(--bg-gradient);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(255,255,255,.58), transparent 24%),
+        radial-gradient(circle at 92% 18%, rgba(255,255,255,.42), transparent 18%),
+        radial-gradient(circle at 70% 84%, rgba(255,255,255,.22), transparent 18%);
+    }
+    a{color:inherit}
+    .shell{width:min(var(--maxw),calc(100% - 24px));margin:14px auto 34px;position:relative;z-index:1}
+    .floating-hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .float-heart{position:absolute;bottom:-40px;opacity:0;font-size:18px;animation:floatHeart linear forwards;filter:drop-shadow(0 8px 16px rgba(0,0,0,.12))}
+    @keyframes floatHeart{
+      0%{transform:translateY(0) translateX(0) scale(.8) rotate(0);opacity:0}
+      10%{opacity:.75}
+      100%{transform:translateY(-110vh) translateX(36px) scale(1.3) rotate(20deg);opacity:0}
+    }
+    .topbar{
+      position:sticky;top:10px;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 14px;background:rgba(255,255,255,.65);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-soft);margin-bottom:16px;
+    }
+    body.theme-night .topbar{background:rgba(23,25,39,.6)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 10px 24px rgba(255,110,159,.26);flex:0 0 auto}
+    .brand h1{margin:0;font-size:1rem;font-weight:800;white-space:nowrap}
+    .brand p{margin:3px 0 0;color:var(--text-soft);font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+    .actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .pill,.nav-link,.btn,button,input,select,textarea{font:inherit}
+    .pill,.nav-link,.btn,.chip-btn{
+      border:none;cursor:pointer;padding:10px 14px;border-radius:999px;transition:.22s ease;text-decoration:none;
+    }
+    .pill,.nav-link{background:transparent;color:var(--text)}
+    .pill:hover,.nav-link:hover,.pill.active{background:var(--card-strong);box-shadow:var(--shadow-soft);border-color:var(--line)}
+    .btn{
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 12px 26px rgba(255,110,159,.24)
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.secondary{background:var(--card-strong);color:var(--text);box-shadow:var(--shadow-soft)}
+    .btn.ghost{background:transparent;color:var(--text);box-shadow:none;border:1px solid var(--line)}
+    .btn.danger{background:linear-gradient(135deg,var(--danger),#ff8f9b)}
+    .hero{
+      background:var(--hero-gradient);border:1px solid var(--line);border-radius:36px;padding:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .95fr;gap:20px;overflow:hidden;position:relative;margin-bottom:18px;
+    }
+    .hero::after{content:"";position:absolute;right:-80px;bottom:-90px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.42),transparent 70%)}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:var(--card-strong);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-soft);font-size:.9rem;color:var(--text-soft)}
+    .hero h2{margin:12px 0 12px;font-size:clamp(2rem,7vw,3.5rem);line-height:1.08;letter-spacing:-.04em}
+    .hero p{margin:0;color:var(--text-soft);line-height:1.85}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+    .couple-card{background:var(--card-strong);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow-soft)}
+    .avatars{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .avatar{text-align:center;flex:1}
+    .avatar-bubble{width:76px;height:76px;border-radius:24px;margin:0 auto 10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;font-size:30px;font-weight:700;box-shadow:0 10px 22px rgba(255,110,159,.22)}
+    .avatar h3{margin:0 0 4px;font-size:1rem}
+    .avatar small{color:var(--text-soft)}
+    .love-link{font-size:24px;color:var(--primary);padding-top:6px}
+    .hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+    .stat-box{padding:16px;border-radius:20px;background:rgba(255,255,255,.66);border:1px solid var(--line)}
+    body.theme-night .stat-box{background:rgba(255,255,255,.05)}
+    .stat-box strong{display:block;font-size:1.46rem;margin-top:6px}
+    .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+    .card{
+      background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-soft);padding:22px;position:relative;overflow:hidden
+    }
+    .card h3{margin:0 0 6px;font-size:1.16rem}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .card-head p{margin:0;color:var(--text-soft);line-height:1.7;font-size:.94rem}
+    .span-12{grid-column:span 12}
+    .span-8{grid-column:span 8}
+    .span-7{grid-column:span 7}
+    .span-6{grid-column:span 6}
+    .span-5{grid-column:span 5}
+    .span-4{grid-column:span 4}
+    .span-3{grid-column:span 3}
+    .section-title{display:flex;align-items:center;gap:10px;font-size:1.1rem}
+    .section-title .icon{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;box-shadow:0 10px 22px rgba(255,110,159,.2)}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .metric{background:var(--card-strong);border:1px solid var(--line);border-radius:20px;padding:16px}
+    .metric .label{font-size:.86rem;color:var(--text-soft)}
+    .metric .value{font-size:1.44rem;font-weight:800;margin-top:6px}
+    .mini-text{font-size:.88rem;color:var(--text-soft)}
+    .section-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .quick-link{display:flex;align-items:center;gap:12px;padding:16px;border-radius:20px;background:var(--card-strong);border:1px solid var(--line);text-decoration:none;transition:.22s ease}
+    .quick-link:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+    .quick-link i{font-style:normal;font-size:1.25rem}
+    .chips{display:flex;gap:10px;flex-wrap:wrap}
+    .chip-btn{background:var(--card-strong);color:var(--text);border:1px solid var(--line)}
+    .chip-btn.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent}
+    .list{display:grid;gap:12px}
+    .item{padding:15px 16px;border-radius:18px;background:var(--card-strong);border:1px solid var(--line)}
+    .item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .item-title{font-weight:700;margin:0 0 4px}
+    .item-meta{font-size:.85rem;color:var(--text-soft)}
+    .item-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .icon-btn{border:none;background:var(--bg-2);color:var(--text);padding:8px 10px;border-radius:12px;cursor:pointer}
+    .icon-btn:hover{background:var(--secondary)}
+    .timeline{position:relative;padding-left:18px;display:grid;gap:14px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--primary),rgba(255,110,159,.14))}
+    .timeline-item{position:relative;padding:14px 14px 14px 18px;background:var(--card-strong);border:1px solid var(--line);border-radius:18px}
+    .timeline-item::before{content:"";position:absolute;left:-16px;top:20px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:0 0 0 4px rgba(255,110,159,.12)}
+    .photo-wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .photo-card{position:relative;border-radius:18px;overflow:hidden;min-height:170px;background:#efe2e7;border:1px solid var(--line)}
+    .photo-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .photo-card .caption{position:absolute;left:0;right:0;bottom:0;padding:12px 12px 10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.62));color:#fff;font-size:.88rem}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .field{display:grid;gap:8px}
+    .field label{font-weight:700;font-size:.92rem}
+    .field input,.field textarea,.field select{
+      width:100%;border:1px solid var(--line);background:var(--card-strong);color:var(--text);padding:13px 14px;border-radius:16px;outline:none
+    }
+    .field textarea{min-height:104px;resize:vertical}
+    .field input:focus,.field textarea:focus,.field select:focus{box-shadow:0 0 0 4px rgba(255,110,159,.1)}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:rgba(255,110,159,.1);color:var(--primary);font-size:.82rem;font-weight:700}
+    .empty{padding:18px;border-radius:18px;text-align:center;color:var(--text-soft);background:var(--card-strong);border:1px dashed var(--line)}
+    .moods{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+    .mood-btn{padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--card-strong);cursor:pointer;transition:.2s ease;text-align:center}
+    .mood-btn:hover,.mood-btn.active{transform:translateY(-2px);box-shadow:var(--shadow-soft);background:linear-gradient(135deg,rgba(255,110,159,.14),rgba(255,198,109,.16))}
+    .progress{height:10px;border-radius:999px;background:rgba(255,110,159,.1);overflow:hidden}
+    .progress span{display:block;height:100%;border-radius:999px;background:linear-gradient(135deg,var(--primary),var(--accent))}
+    .calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+    .calendar-cell{padding:10px;border-radius:14px;background:var(--card-strong);border:1px solid var(--line);min-height:72px;display:flex;flex-direction:column;gap:6px}
+    .calendar-cell.today{outline:2px solid rgba(255,110,159,.22)}
+    .calendar-cell .day{font-size:.85rem;color:var(--text-soft)}
+    .calendar-cell .dot{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,110,159,.12);font-size:16px}
+    .note-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .sticky{padding:16px;border-radius:18px;background:linear-gradient(135deg,#fff7cb,#ffe7f0);min-height:130px;box-shadow:var(--shadow-soft);border:1px solid rgba(255,179,104,.24);position:relative}
+    body.theme-night .sticky{background:linear-gradient(135deg,rgba(255,215,104,.12),rgba(255,110,159,.12))}
+    .sticky::after{content:"❤";position:absolute;right:12px;bottom:8px;opacity:.16;font-size:32px}
+    .sticky .time{font-size:.8rem;color:var(--text-soft);margin-top:10px}
+    .music-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--card-strong);border:1px solid var(--line)}
+    .switches{display:grid;gap:12px}
+    .switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;background:var(--card-strong);border:1px solid var(--line)}
+    .switch{position:relative;width:54px;height:30px;display:inline-block}
+    .switch input{display:none}
+    .switch span{position:absolute;inset:0;border-radius:999px;background:rgba(255,110,159,.18);transition:.2s ease}
+    .switch span::after{content:"";position:absolute;left:4px;top:4px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.15);transition:.2s ease}
+    .switch input:checked + span{background:linear-gradient(135deg,var(--primary),var(--accent))}
+    .switch input:checked + span::after{transform:translateX(24px)}
+    .footer{text-align:center;color:var(--text-soft);padding:8px 8px 40px}
+    .drawer{
+      position:fixed;right:16px;bottom:16px;width:min(360px,calc(100% - 24px));padding:18px;border-radius:24px;background:var(--card-strong);border:1px solid var(--line);box-shadow:var(--shadow);z-index:70;transform:translateY(130%);transition:.28s ease
+    }
+    .drawer.show{transform:translateY(0)}
+    .toast-wrap{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:grid;gap:10px;z-index:80}
+    .toast{background:rgba(31,34,51,.88);color:#fff;padding:12px 16px;border-radius:999px;box-shadow:0 12px 28px rgba(0,0,0,.18);font-size:.9rem}
+    .modal{position:fixed;inset:0;background:rgba(18,18,28,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:90}
+    .modal.show{display:flex}
+    .modal-card{width:min(680px,100%);max-height:90vh;overflow:auto;background:var(--card-strong);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:22px}
+    .modal-image{width:100%;max-height:320px;object-fit:cover;border-radius:18px;margin-bottom:14px;background:#eee}
+    .cover{
+      position:fixed;inset:0;z-index:120;background:linear-gradient(135deg,#fff6fa 0%,#fff2f7 55%,#fff7ef 100%);display:flex;align-items:center;justify-content:center;padding:24px
+    }
+    .cover.hide{display:none}
+    .cover-card{width:min(520px,100%);background:rgba(255,255,255,.94);border-radius:32px;padding:28px;border:1px solid rgba(255,110,159,.16);box-shadow:0 24px 60px rgba(200,96,140,.18);text-align:center}
+    .cover h2{font-size:2rem;margin:10px 0}
+    .cover p{color:#8a6f7b;line-height:1.85}
+    .lock-screen{position:fixed;inset:0;z-index:110;background:rgba(16,18,28,.82);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
+    .lock-screen.show{display:flex}
+    .lock-card{width:min(420px,100%);background:var(--card-strong);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}
+    .small-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .divider{height:1px;background:var(--line);margin:14px 0}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column:span 12}
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .section-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .photo-wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .note-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .shell{width:min(var(--maxw),calc(100% - 16px))}
+      .topbar{border-radius:24px;align-items:flex-start;flex-direction:column}
+      .actions{width:100%;justify-content:flex-start;overflow:auto;padding-bottom:2px}
+      .hero{padding:20px;border-radius:28px}
+      .card{padding:18px;border-radius:24px}
+      .form-grid,.small-grid{grid-template-columns:1fr}
+      .photo-wall,.metrics,.section-nav{grid-template-columns:1fr}
+      .moods{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .calendar-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .avatars{flex-direction:column}
+      .love-link{transform:rotate(90deg)}
+      .hero-stats{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="cover" id="welcomeCover">
+    <div class="cover-card">
+      <div class="hero-tag">💌 只属于建伟和婷婷的小宇宙</div>
+      <h2>欢迎来到我们的恋爱网站</h2>
+      <p>这里有纪念日、回忆相册、留言板、心情日历、约会计划、愿望清单、情书抽卡、数据备份和主题切换。页面数据默认保存在当前浏览器里，打开即用。❤</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+        <button class="btn" id="enterSiteBtn">进入网站</button>
+        <button class="btn secondary" id="randomBlessBtn">抽一句今日情话</button>
+      </div>
+      <div id="welcomeQuote" class="mini-text" style="margin-top:16px"></div>
+    </div>
+  </div>
+
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <div class="card-head">
+        <div>
+          <h3>🔐 私密访问</h3>
+          <p>这是前端密码锁，适合日常遮挡，不等于真正服务端安全。</p>
+        </div>
+      </div>
+      <div class="field">
+        <label>输入访问密码</label>
+        <input type="password" id="unlockInput" placeholder="请输入密码">
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn" id="unlockBtn">解锁</button>
+        <button class="btn secondary" id="unlockHintBtn">查看提示</button>
+      </div>
+      <div id="unlockHint" class="mini-text" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="floating-hearts" id="floatingHearts"></div>
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-icon">❤</div>
+        <div>
+          <h1>建伟 ❤ 婷婷</h1>
+          <p id="topbarSubtitle">从心动到日常，每一天都值得被认真收藏</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="nav-link" href="#dashboard">首页</a>
+        <a class="nav-link" href="#anniversary">纪念日</a>
+        <a class="nav-link" href="#memories">回忆</a>
+        <a class="nav-link" href="#messages">留言</a>
+        <a class="nav-link" href="#planner">计划</a>
+        <button class="pill" data-theme="rose">玫瑰</button>
+        <button class="pill" data-theme="cream">奶油</button>
+        <button class="pill" data-theme="night">夜色</button>
+      </div>
+    </div>
+
+    <section class="hero" id="dashboard">
+      <div>
+        <div class="hero-tag">✨ 私密双人空间 · 本地可编辑 · 手机友好</div>
+        <h2>建伟和婷婷的<br>恋爱纪念馆</h2>
+        <p id="heroIntro">把想念、纪念、约定、心情和日常都安放在这里。愿我们慢慢走、深深爱，把普通日子也过成闪闪发光的日子。</p>
+        <div class="hero-cta">
+          <a class="btn" href="#settings">编辑网站资料</a>
+          <button class="btn secondary" id="surpriseBtn">打开惊喜抽卡</button>
+          <button class="btn ghost" id="loveRainBtn">放个爱心雨</button>
+        </div>
+      </div>
+      <div class="couple-card">
+        <div class="avatars">
+          <div class="avatar">
+            <div class="avatar-bubble" id="boyInitial">建</div>
+            <h3 id="boyNameLabel">建伟</h3>
+            <small>认真记录爱情的人</small>
+          </div>
+          <div class="love-link">❤</div>
+          <div class="avatar">
+            <div class="avatar-bubble" id="girlInitial">婷</div>
+            <h3 id="girlNameLabel">婷婷</h3>
+            <small>让日子变甜的人</small>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="mini-text">我们已经相爱</div>
+            <strong id="loveDaysHero">0 天</strong>
+          </div>
+          <div class="stat-box">
+            <div class="mini-text">下一个纪念日</div>
+            <strong id="nextAnnHero">准备中</strong>
+          </div>
+          <div class="stat-box">
+            <div class="mini-text">今日心情</div>
+            <strong id="todayMoodHero">🥰</strong>
+          </div>
+          <div class="stat-box">
+            <div class="mini-text">完成心愿</div>
+            <strong id="wishDoneHero">0/0</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card span-12">
+      <div class="card-head">
+        <div class="section-title"><div class="icon">📊</div><div><h3>恋爱数据总览</h3><p>一眼看到今天最重要的爱情数据。</p></div></div>
+        <div class="badge" id="liveClock">--:--</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="label">相恋天数</div><div class="value" id="metricDays">0</div></div>
+        <div class="metric"><div class="label">共同回忆</div><div class="value" id="metricMemories">0</div></div>
+        <div class="metric"><div class="label">留言数量</div><div class="value" id="metricMessages">0</div></div>
+        <div class="metric"><div class="label">约会计划</div><div class="value" id="metricPlans">0</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card span-7">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">⚡</div><div><h3>快捷入口</h3><p>常用功能一键直达。</p></div></div>
+        </div>
+        <div class="section-nav">
+          <a class="quick-link" href="#anniversary"><i>🎂</i><span>纪念日</span></a>
+          <a class="quick-link" href="#memories"><i>📷</i><span>回忆相册</span></a>
+          <a class="quick-link" href="#mood"><i>😊</i><span>心情日历</span></a>
+          <a class="quick-link" href="#wishlist"><i>🎯</i><span>愿望清单</span></a>
+          <a class="quick-link" href="#messages"><i>💬</i><span>留言板</span></a>
+          <a class="quick-link" href="#planner"><i>🗓</i><span>约会计划</span></a>
+          <a class="quick-link" href="#letters"><i>💌</i><span>今日情书</span></a>
+          <a class="quick-link" href="#settings"><i>⚙</i><span>网站设置</span></a>
+        </div>
+      </section>
+
+      <section class="card span-5" id="dailyQuoteCard">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🌷</div><div><h3>今日情话</h3><p>每天来这里，抽一句写给婷婷的话。</p></div></div>
+          <button class="btn secondary" id="refreshQuoteBtn">换一句</button>
+        </div>
+        <div id="dailyQuote" style="font-size:1.05rem;line-height:1.9;font-weight:700">你是我平凡日子里，最柔软也最确定的欢喜。</div>
+        <div class="mini-text" style="margin-top:12px">建议把这句发给婷婷，今天加分会很高。😉</div>
+      </section>
+
+      <section class="card span-12" id="anniversary">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🎉</div><div><h3>纪念日管理</h3><p>支持新增、删除、自动倒计时。下一个重要日子会自动显示在首页。</p></div></div>
+          <div class="badge" id="nextAnnBadge">最近纪念日准备中</div>
+        </div>
+        <div class="form-grid" style="margin-bottom:14px">
+          <div class="field"><label>纪念日名称</label><input id="annTitle" placeholder="比如：第一次见面"></div>
+          <div class="field"><label>日期</label><input id="annDate" type="date"></div>
+          <div class="field"><label>分类</label><select id="annType"><option value="纪念日">纪念日</option><option value="生日">生日</option><option value="旅行">旅行</option><option value="节日">节日</option></select></div>
+          <div class="field"><label>备注</label><input id="annNote" placeholder="写一句想说的话"></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn" id="addAnnBtn">新增纪念日</button>
+          <button class="btn secondary" id="resetAnnBtn">清空输入</button>
+        </div>
+        <div class="list" id="annList"></div>
+      </section>
+
+      <section class="card span-7" id="memories">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">📸</div><div><h3>回忆时间线</h3><p>支持新增图文回忆，点击即可查看详情。</p></div></div>
+          <div class="chips" id="memoryFilterWrap">
+            <button class="chip-btn active" data-filter="全部">全部</button>
+            <button class="chip-btn" data-filter="日常">日常</button>
+            <button class="chip-btn" data-filter="约会">约会</button>
+            <button class="chip-btn" data-filter="旅行">旅行</button>
+            <button class="chip-btn" data-filter="纪念日">纪念日</button>
+          </div>
+        </div>
+        <div class="form-grid" style="margin-bottom:14px">
+          <div class="field"><label>标题</label><input id="memoryTitle" placeholder="比如：第一次一起看日落"></div>
+          <div class="field"><label>日期</label><input id="memoryDate" type="date"></div>
+          <div class="field"><label>标签</label><select id="memoryTag"><option value="日常">日常</option><option value="约会">约会</option><option value="旅行">旅行</option><option value="纪念日">纪念日</option></select></div>
+          <div class="field"><label>图片链接</label><input id="memoryImage" placeholder="可填图片 URL，也可留空"></div>
+          <div class="field" style="grid-column:1 / -1"><label>内容</label><textarea id="memoryText" placeholder="记录那天发生的事、当时的心情、想对婷婷说的话"></textarea></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn" id="addMemoryBtn">保存回忆</button>
+          <button class="btn secondary" id="pickSampleImageBtn">自动填充示例图片</button>
+        </div>
+        <div class="timeline" id="memoryTimeline"></div>
+      </section>
+
+      <section class="card span-5">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🖼</div><div><h3>照片墙</h3><p>自动读取有图片的回忆，展示成小相册。</p></div></div>
+        </div>
+        <div class="photo-wall" id="photoWall"></div>
+      </section>
+
+      <section class="card span-6" id="messages">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">💬</div><div><h3>双人留言板</h3><p>支持置顶、删除和快速留言。</p></div></div>
+          <div class="badge">给婷婷写点什么吧</div>
+        </div>
+        <div class="form-grid" style="margin-bottom:14px">
+          <div class="field"><label>留言人</label><select id="msgAuthor"><option value="建伟">建伟</option><option value="婷婷">婷婷</option></select></div>
+          <div class="field"><label>心情</label><select id="msgMood"><option value="🥰">🥰</option><option value="😘">😘</option><option value="😚">😚</option><option value="😴">😴</option><option value="🤗">🤗</option><option value="🥺">🥺</option></select></div>
+          <div class="field" style="grid-column:1 / -1"><label>留言内容</label><textarea id="msgText" placeholder="比如：婷婷，今天辛苦啦，晚上一起看电影好不好？"></textarea></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn" id="addMsgBtn">发布留言</button>
+          <button class="btn secondary" id="quickLoveBtn">一键生成甜甜留言</button>
+        </div>
+        <div class="note-grid" id="messageBoard"></div>
+      </section>
+
+      <section class="card span-6" id="mood">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">😊</div><div><h3>心情打卡</h3><p>今天过得怎么样？选一个心情并写下简短记录。</p></div></div>
+          <div class="badge" id="latestMoodBadge">今日未打卡</div>
+        </div>
+        <div class="moods" id="moodButtons">
+          <button class="mood-btn" data-emoji="🥰">🥰<br><span class="mini-text">超开心</span></button>
+          <button class="mood-btn" data-emoji="😊">😊<br><span class="mini-text">很舒服</span></button>
+          <button class="mood-btn" data-emoji="😴">😴<br><span class="mini-text">有点累</span></button>
+          <button class="mood-btn" data-emoji="🥺">🥺<br><span class="mini-text">想你了</span></button>
+          <button class="mood-btn" data-emoji="😤">😤<br><span class="mini-text">有点烦</span></button>
+        </div>
+        <div class="field" style="margin-top:14px"><label>今日备注</label><textarea id="moodNote" placeholder="比如：今天很想婷婷，下班想一起吃好吃的"></textarea></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+          <button class="btn" id="saveMoodBtn">保存今日心情</button>
+          <button class="btn secondary" id="randomComfortBtn">给我一句安慰</button>
+        </div>
+        <div class="divider"></div>
+        <div class="calendar-grid" id="moodCalendar"></div>
+      </section>
+
+      <section class="card span-6" id="wishlist">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🎯</div><div><h3>愿望清单</h3><p>想和婷婷一起完成的事情，都可以记在这里。</p></div></div>
+          <div class="badge" id="wishRateBadge">完成率 0%</div>
+        </div>
+        <div class="form-grid" style="margin-bottom:14px">
+          <div class="field"><label>愿望标题</label><input id="wishTitle" placeholder="比如：一起去看海"></div>
+          <div class="field"><label>优先级</label><select id="wishPriority"><option value="高">高</option><option value="中">中</option><option value="低">低</option></select></div>
+          <div class="field" style="grid-column:1 / -1"><label>备注</label><input id="wishNote" placeholder="比如：想在夏天实现"></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn" id="addWishBtn">添加愿望</button>
+          <button class="btn secondary" id="addWishPresetBtn">加一组浪漫愿望</button>
+        </div>
+        <div class="progress" style="margin-bottom:14px"><span id="wishProgressBar" style="width:0%"></span></div>
+        <div class="list" id="wishList"></div>
+      </section>
+
+      <section class="card span-6" id="planner">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🗓</div><div><h3>约会计划</h3><p>支持安排约会、设置状态和地点。</p></div></div>
+          <div class="badge">一起把期待安排上</div>
+        </div>
+        <div class="form-grid" style="margin-bottom:14px">
+          <div class="field"><label>计划名称</label><input id="planTitle" placeholder="比如：周末去吃火锅"></div>
+          <div class="field"><label>日期</label><input id="planDate" type="date"></div>
+          <div class="field"><label>地点</label><input id="planPlace" placeholder="比如：万象城"></div>
+          <div class="field"><label>状态</label><select id="planStatus"><option value="待安排">待安排</option><option value="已预约">已预约</option><option value="已完成">已完成</option></select></div>
+          <div class="field" style="grid-column:1 / -1"><label>计划备注</label><input id="planNote" placeholder="比如：提前买好电影票"></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn" id="addPlanBtn">新增计划</button>
+          <button class="btn secondary" id="addPlanPresetBtn">快速添加约会模板</button>
+        </div>
+        <div class="list" id="planList"></div>
+      </section>
+
+      <section class="card span-6" id="letters">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">💌</div><div><h3>今日情书</h3><p>想对婷婷说的话，认真写下来。</p></div></div>
+          <button class="btn secondary" id="insertLetterPresetBtn">插入模板</button>
+        </div>
+        <div class="field"><label>给婷婷的一封信</label><textarea id="letterText" style="min-height:220px" placeholder="亲爱的婷婷，今天我想对你说……"></textarea></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+          <button class="btn" id="saveLetterBtn">保存情书</button>
+          <button class="btn secondary" id="copyLetterBtn">复制情书</button>
+        </div>
+      </section>
+
+      <section class="card span-6">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">🎵</div><div><h3>恋爱 BGM 与小惊喜</h3><p>保存你们常听的歌，或者随手抽一个互动话题。</p></div></div>
+        </div>
+        <div class="music-card" style="margin-bottom:12px">
+          <div>
+            <div class="item-title">本周循环歌单</div>
+            <div class="mini-text" id="playlistText">《喜欢你》《慢慢喜欢你》《告白气球》</div>
+          </div>
+          <button class="btn secondary" id="editPlaylistBtn">编辑</button>
+        </div>
+        <div class="music-card" style="margin-bottom:12px">
+          <div>
+            <div class="item-title">恋爱问答抽卡</div>
+            <div class="mini-text" id="qaText">点右边抽一个适合今天晚上聊的话题。</div>
+          </div>
+          <button class="btn secondary" id="drawQaBtn">抽问题</button>
+        </div>
+        <div class="music-card">
+          <div>
+            <div class="item-title">惊喜表白台词</div>
+            <div class="mini-text" id="confessionText">点右边帮你生成一段适合发给婷婷的短句。</div>
+          </div>
+          <button class="btn secondary" id="drawConfessionBtn">生成</button>
+        </div>
+      </section>
+
+      <section class="card span-12" id="settings">
+        <div class="card-head">
+          <div class="section-title"><div class="icon">⚙</div><div><h3>网站设置与数据管理</h3><p>支持修改名字、日期、简介、访问密码、主题、数据导出导入与恢复默认内容。</p></div></div>
+        </div>
+        <div class="grid" style="gap:14px">
+          <div class="span-7">
+            <div class="form-grid">
+              <div class="field"><label>男生名字</label><input id="settingBoy" value="建伟"></div>
+              <div class="field"><label>女生名字</label><input id="settingGirl" value="婷婷"></div>
+              <div class="field"><label>相恋开始日期</label><input id="settingLoveDate" type="date"></div>
+              <div class="field"><label>私密访问密码</label><input id="settingPassword" placeholder="默认 5201314"></div>
+              <div class="field" style="grid-column:1 / -1"><label>首页简介</label><textarea id="settingIntro" placeholder="写一句属于你们的介绍"></textarea></div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+              <button class="btn" id="saveSettingsBtn">保存网站设置</button>
+              <button class="btn secondary" id="lockNowBtn">立即锁屏</button>
+            </div>
+          </div>
+          <div class="span-5">
+            <div class="switches">
+              <div class="switch-row"><div><div class="item-title">漂浮爱心特效</div><div class="mini-text">关闭后页面更克制、更省电。</div></div><label class="switch"><input type="checkbox" id="toggleHearts"><span></span></label></div>
+              <div class="switch-row"><div><div class="item-title">欢迎页</div><div class="mini-text">每次刷新是否显示欢迎层。</div></div><label class="switch"><input type="checkbox" id="toggleCover"><span></span></label></div>
+              <div class="switch-row"><div><div class="item-title">启用密码锁</div><div class="mini-text">打开后刷新页面会先要求输入密码。</div></div><label class="switch"><input type="checkbox" id="togglePassword"><span></span></label></div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+              <button class="btn secondary" id="exportBtn">导出数据</button>
+              <label class="btn secondary" style="cursor:pointer">导入数据<input type="file" id="importInput" accept="application/json" style="display:none"></label>
+              <button class="btn danger" id="resetAllBtn">恢复默认</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">建伟 ❤ 婷婷 · 恋爱网站单文件版 · 支持本地保存、手机访问、GitHub Pages 部署</div>
+  </div>
+
+  <div class="drawer" id="surpriseDrawer">
+    <div class="card-head" style="margin-bottom:8px">
+      <div>
+        <h3>🎁 恋爱惊喜抽卡</h3>
+        <p>每次点开，都会送你一句不一样的温柔。</p>
+      </div>
+      <button class="icon-btn" id="closeDrawerBtn">关闭</button>
+    </div>
+    <div id="drawerContent" style="line-height:1.9;font-weight:700"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button class="btn" id="drawerAgainBtn">再抽一次</button>
+      <button class="btn secondary" id="drawerCopyBtn">复制内容</button>
+    </div>
+  </div>
+
+  <div class="modal" id="memoryModal">
+    <div class="modal-card">
+      <div class="card-head">
+        <div>
+          <h3 id="modalTitle">回忆详情</h3>
+          <p id="modalMeta"></p>
+        </div>
+        <button class="icon-btn" id="closeModalBtn">关闭</button>
+      </div>
+      <img id="modalImage" class="modal-image" alt="回忆图片">
+      <div id="modalText" style="line-height:1.9"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var STORAGE_KEY = 'love_space_tingting_plus_v1';
+      var THEME_KEY = 'love_space_theme';
+      var todayStr = formatDate(new Date());
+      var loveQuotes = [
+        '婷婷，你是我认真生活最温柔的理由。',
+        '和你在一起以后，平凡的每一天都很值得期待。',
+        '如果今天也有一点辛苦，那就把拥抱留给晚上。',
+        '我最想炫耀的，不是别的，是我真的很喜欢婷婷。',
+        '你一出现，我就觉得今天一定会是好日子。',
+        '建伟的偏爱，永远给婷婷留着。',
+        '比起很多大道理，我更想陪婷婷好好吃饭、散步、过日子。'
+      ];
+      var comfortQuotes = [
+        '今天辛苦了，慢一点也没关系，我会站在你这边。',
+        '别着急，今天没做好不等于你不够好。',
+        '抱抱你，休息一下再继续，婷婷值得被温柔对待。',
+        '有一点累也很正常，等下奖励自己一个甜甜的晚上。'
+      ];
+      var questionCards = [
+        '最近一次因为我而偷偷开心，是什么时候？',
+        '如果下周末只能安排一件事，你最想和我做什么？',
+        '我们下一次旅行，最想去哪座城市？',
+        '你觉得我们最可爱的默契是什么？',
+        '最近哪一瞬间，让你觉得“还好是我们”？'
+      ];
+      var confessionCards = [
+        '婷婷，今天也想把所有温柔都偏向你。',
+        '不管今天顺不顺，我都还是会坚定地喜欢你。',
+        '我喜欢和你一起，把普通日子过成很想收藏的样子。',
+        '想和婷婷分享所有好天气，也想陪你度过所有坏情绪。'
+      ];
+      var sampleImages = [
+        'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80',
+        'https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=80',
+        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+        'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80'
+      ];
+
+      var defaultState = {
+        profile: {
+          boyName: '建伟',
+          girlName: '婷婷',
+          loveDate: '2024-02-14',
+          intro: '把想念、纪念、约定、心情和日常都安放在这里。愿我们慢慢走、深深爱，把普通日子也过成闪闪发光的日子。',
+          subtitle: '从心动到日常，每一天都值得被认真收藏',
+          password: '5201314'
+        },
+        options: {
+          showHearts: true,
+          showCover: true,
+          passwordEnabled: false,
+          playlist: '《喜欢你》《慢慢喜欢你》《告白气球》'
+        },
+        anniversaries: [
+          {id:id(), title:'第一次见面', date:'2024-02-14', type:'纪念日', note:'那天之后，一切都开始变得特别。'},
+          {id:id(), title:'婷婷生日', date:'2024-08-18', type:'生日', note:'要提前准备惊喜和蛋糕。'},
+          {id:id(), title:'第一次旅行', date:'2024-10-01', type:'旅行', note:'一起去看远一点的风景。'}
+        ],
+        memories: [
+          {id:id(), title:'第一次一起吃饭', date:'2024-02-18', tag:'约会', image:sampleImages[0], text:'记得那天我们聊了好多好多，明明时间不长，却觉得很久以前就认识你了。'},
+          {id:id(), title:'一起散步的晚上', date:'2024-03-10', tag:'日常', image:sampleImages[1], text:'路灯很暖，风也很轻，走在你旁边的时候，我突然觉得生活好温柔。'},
+          {id:id(), title:'海边小旅行', date:'2024-10-02', tag:'旅行', image:sampleImages[2], text:'一起吹海风、拍照、发呆，那天的云和你都很美。'}
+        ],
+        messages: [
+          {id:id(), author:'建伟', mood:'🥰', text:'婷婷，今天也要记得按时吃饭，我会一直很想你。', time:Date.now()-86400000, pinned:true},
+          {id:id(), author:'婷婷', mood:'😘', text:'收到啦，你也要乖乖的，晚上一起聊天。', time:Date.now()-43200000, pinned:false}
+        ],
+        moods: [
+          {id:id(), date:todayStr, emoji:'🥰', note:'今天心情不错，想和婷婷一起吃点好吃的。'}
+        ],
+        wishes: [
+          {id:id(), title:'一起去看海', priority:'高', note:'想在天气好的时候实现', done:false},
+          {id:id(), title:'拍一组情侣照', priority:'中', note:'最好找一个阳光很好的下午', done:true}
+        ],
+        plans: [
+          {id:id(), title:'周末一起看电影', date:addDays(todayStr,3), place:'万象城', status:'待安排', note:'先看看最近上映什么电影'},
+          {id:id(), title:'一起吃火锅', date:addDays(todayStr,5), place:'商场 4 楼', status:'已预约', note:'记得早点出发'}
+        ],
+        letter: '亲爱的婷婷，\n\n谢谢你来到我的生活里。和你在一起之后，我开始更珍惜普通的每一天，也更愿意认真表达喜欢。希望以后无论是开心的、辛苦的、平静的日子，我们都能慢慢走、一起过。\n\n建伟'
+      };
+
+      var state = loadState();
+      var memoryFilter = '全部';
+      var selectedMood = '';
+      var lastDrawerText = '';
+
+      function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
+      function id(){ return 'id_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
+      function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+      function pad(n){ return n < 10 ? '0' + n : '' + n; }
+      function formatDate(date){
+        return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+      }
+      function addDays(dateStr, days){
+        var d = new Date(dateStr + 'T00:00:00');
+        d.setDate(d.getDate() + days);
+        return formatDate(d);
+      }
+      function formatDisplayDate(dateStr){
+        if(!dateStr) return '--';
+        var p = dateStr.split('-');
+        return p[0] + '年' + p[1] + '月' + p[2] + '日';
+      }
+      function daysBetween(a, b){
+        var one = new Date(a + 'T00:00:00');
+        var two = new Date(b + 'T00:00:00');
+        return Math.floor((two - one) / 86400000);
+      }
+      function loadState(){
+        try{
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if(raw){
+            var parsed = JSON.parse(raw);
+            return mergeDeep(clone(defaultState), parsed);
+          }
+        }catch(e){}
+        return clone(defaultState);
+      }
+      function mergeDeep(base, custom){
+        if(!custom || typeof custom !== 'object') return base;
+        for(var k in custom){
+          if(Object.prototype.hasOwnProperty.call(custom, k)){
+            if(isPlainObject(base[k]) && isPlainObject(custom[k])){
+              base[k] = mergeDeep(base[k], custom[k]);
+            }else{
+              base[k] = custom[k];
+            }
+          }
+        }
+        return base;
+      }
+      function isPlainObject(v){ return Object.prototype.toString.call(v) === '[object Object]'; }
+      function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+      function setTheme(theme){
+        document.body.classList.remove('theme-cream','theme-night');
+        if(theme === 'cream') document.body.classList.add('theme-cream');
+        if(theme === 'night') document.body.classList.add('theme-night');
+        localStorage.setItem(THEME_KEY, theme || 'rose');
+        var pills = document.querySelectorAll('[data-theme]');
+        for(var i=0;i<pills.length;i++) pills[i].classList.remove('active');
+        var current = document.querySelector('[data-theme="' + (theme || 'rose') + '"]');
+        if(current) current.classList.add('active');
+      }
+      function toast(text){
+        var wrap = $('#toastWrap');
+        var div = document.createElement('div');
+        div.className = 'toast';
+        div.textContent = text;
+        wrap.appendChild(div);
+        setTimeout(function(){ div.style.opacity = '0'; div.style.transform = 'translateY(8px)'; }, 2100);
+        setTimeout(function(){ if(div.parentNode) div.parentNode.removeChild(div); }, 2600);
+      }
+      function createHeart(count){
+        if(!state.options.showHearts) return;
+        count = count || 12;
+        var wrap = $('#floatingHearts');
+        var emojis = ['❤','💗','💖','💕'];
+        for(var i=0;i<count;i++){
+          (function(index){
+            var span = document.createElement('span');
+            span.className = 'float-heart';
+            span.textContent = pick(emojis);
+            span.style.left = (Math.random() * 100) + '%';
+            span.style.animationDuration = (6 + Math.random() * 4) + 's';
+            span.style.animationDelay = (index * 80) + 'ms';
+            span.style.fontSize = (16 + Math.random() * 18) + 'px';
+            wrap.appendChild(span);
+            setTimeout(function(){ if(span.parentNode) span.parentNode.removeChild(span); }, 11000);
+          })(i);
+        }
+      }
+      function $(selector){ return document.querySelector(selector); }
+      function $all(selector){ return document.querySelectorAll(selector); }
+
+      function getLoveDays(){ return Math.max(0, daysBetween(state.profile.loveDate, formatDate(new Date())) + 1); }
+      function getNextAnniversary(){
+        if(!state.anniversaries.length) return null;
+        var today = formatDate(new Date());
+        var list = state.anniversaries.map(function(item){
+          var nextDate = nextAnnualDate(item.date, today);
+          return { item:item, nextDate:nextDate, diff:daysBetween(today, nextDate) };
+        }).sort(function(a,b){ return a.diff - b.diff; });
+        return list[0];
+      }
+      function nextAnnualDate(dateStr, fromStr){
+        var p = dateStr.split('-');
+        var year = fromStr.split('-')[0];
+        var candidate = year + '-' + p[1] + '-' + p[2];
+        if(daysBetween(fromStr, candidate) < 0){
+          candidate = (parseInt(year,10)+1) + '-' + p[1] + '-' + p[2];
+        }
+        return candidate;
+      }
+      function latestMood(){
+        var target = null;
+        for(var i=0;i<state.moods.length;i++){
+          if(state.moods[i].date === todayStr) target = state.moods[i];
+        }
+        return target || (state.moods.length ? state.moods[state.moods.length-1] : null);
+      }
+      function renderAll(){
+        renderProfile();
+        renderMetrics();
+        renderAnniversaries();
+        renderMemories();
+        renderPhotos();
+        renderMessages();
+        renderMood();
+        renderWishes();
+        renderPlans();
+        renderLetter();
+        renderSettings();
+        renderPlaylist();
+        updateClock();
+      }
+      function renderProfile(){
+        $('#boyNameLabel').textContent = state.profile.boyName;
+        $('#girlNameLabel').textContent = state.profile.girlName;
+        $('#boyInitial').textContent = state.profile.boyName.charAt(0) || '建';
+        $('#girlInitial').textContent = state.profile.girlName.charAt(0) || '婷';
+        document.querySelector('.brand h1').textContent = state.profile.boyName + ' ❤ ' + state.profile.girlName;
+        $('#topbarSubtitle').textContent = state.profile.subtitle || '从心动到日常，每一天都值得被认真收藏';
+        $('#heroIntro').textContent = state.profile.intro;
+        var days = getLoveDays();
+        $('#loveDaysHero').textContent = days + ' 天';
+        $('#metricDays').textContent = days;
+        var nextAnn = getNextAnniversary();
+        if(nextAnn){
+          $('#nextAnnHero').textContent = nextAnn.item.title + ' · ' + nextAnn.diff + ' 天';
+          $('#nextAnnBadge').textContent = '最近纪念日：' + nextAnn.item.title + '，还有 ' + nextAnn.diff + ' 天';
+        }else{
+          $('#nextAnnHero').textContent = '准备中';
+          $('#nextAnnBadge').textContent = '最近纪念日准备中';
+        }
+        var mood = latestMood();
+        $('#todayMoodHero').textContent = mood ? mood.emoji : '🙂';
+      }
+      function renderMetrics(){
+        $('#metricMemories').textContent = state.memories.length;
+        $('#metricMessages').textContent = state.messages.length;
+        $('#metricPlans').textContent = state.plans.length;
+      }
+      function renderAnniversaries(){
+        var wrap = $('#annList');
+        wrap.innerHTML = '';
+        var list = clone(state.anniversaries).sort(function(a,b){ return a.date.localeCompare(b.date); });
+        if(!list.length){ wrap.innerHTML = '<div class="empty">还没有纪念日，快添加第一条吧。</div>'; return; }
+        var today = formatDate(new Date());
+        list.forEach(function(item){
+          var next = nextAnnualDate(item.date, today);
+          var diff = daysBetween(today, next);
+          var div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = '<div class="item-top"><div><div class="item-title">' + escapeHtml(item.title) + ' <span class="badge">' + escapeHtml(item.type) + '</span></div><div class="item-meta">' + formatDisplayDate(item.date) + ' · 还有 ' + diff + ' 天</div><div class="mini-text" style="margin-top:6px">' + escapeHtml(item.note || '没有备注') + '</div></div><div class="item-actions"><button class="icon-btn" data-del-ann="' + item.id + '">删除</button></div></div>';
+          wrap.appendChild(div);
+        });
+      }
+      function renderMemories(){
+        var wrap = $('#memoryTimeline');
+        wrap.innerHTML = '';
+        var list = clone(state.memories).sort(function(a,b){ return b.date.localeCompare(a.date); });
+        if(memoryFilter !== '全部'){
+          list = list.filter(function(item){ return item.tag === memoryFilter; });
+        }
+        if(!list.length){ wrap.innerHTML = '<div class="empty">当前筛选下没有回忆，写下第一条吧。</div>'; return; }
+        list.forEach(function(item){
+          var div = document.createElement('div');
+          div.className = 'timeline-item';
+          div.innerHTML = '<div class="item-top"><div><div class="item-title">' + escapeHtml(item.title) + ' <span class="badge">' + escapeHtml(item.tag) + '</span></div><div class="item-meta">' + formatDisplayDate(item.date) + '</div><div class="mini-text" style="margin-top:8px">' + escapeHtml(item.text).slice(0,72) + (item.text.length > 72 ? '...' : '') + '</div></div><div class="item-actions"><button class="icon-btn" data-view-memory="' + item.id + '">查看</button><button class="icon-btn" data-del-memory="' + item.id + '">删除</button></div></div>';
+          wrap.appendChild(div);
+        });
+      }
+      function renderPhotos(){
+        var wrap = $('#photoWall');
+        wrap.innerHTML = '';
+        var list = state.memories.filter(function(item){ return !!item.image; }).slice(0,6);
+        if(!list.length){ wrap.innerHTML = '<div class="empty" style="grid-column:1 / -1">给回忆加上图片后，这里就会自动变成照片墙。</div>'; return; }
+        list.forEach(function(item){
+          var div = document.createElement('div');
+          div.className = 'photo-card';
+          div.innerHTML = '<img src="' + escapeAttr(item.image) + '" alt="' + escapeAttr(item.title) + '"><div class="caption">' + escapeHtml(item.title) + '</div>';
+          div.setAttribute('data-view-memory', item.id);
+          wrap.appendChild(div);
+        });
+      }
+      function renderMessages(){
+        var wrap = $('#messageBoard');
+        wrap.innerHTML = '';
+        var list = clone(state.messages).sort(function(a,b){
+          if(a.pinned && !b.pinned) return -1;
+          if(!a.pinned && b.pinned) return 1;
+          return b.time - a.time;
+        });
+        if(!list.length){ wrap.innerHTML = '<div class="empty" style="grid-column:1 / -1">还没有留言，快给婷婷写第一张小纸条吧。</div>'; return; }
+        list.forEach(function(item){
+          var div = document.createElement('div');
+          div.className = 'sticky';
+          div.innerHTML = '<div class="item-top"><div class="item-title">' + item.mood + ' ' + escapeHtml(item.author) + (item.pinned ? ' · 置顶' : '') + '</div><div class="item-actions"><button class="icon-btn" data-pin-msg="' + item.id + '">' + (item.pinned ? '取消置顶' : '置顶') + '</button><button class="icon-btn" data-del-msg="' + item.id + '">删除</button></div></div><div style="line-height:1.85;margin-top:6px">' + escapeHtml(item.text) + '</div><div class="time">' + formatTime(item.time) + '</div>';
+          wrap.appendChild(div);
+        });
+      }
+      function renderMood(){
+        var badge = $('#latestMoodBadge');
+        var latest = latestMood();
+        badge.textContent = latest ? '最近心情：' + latest.emoji + ' ' + latest.date : '今日未打卡';
+        var todayMood = state.moods.filter(function(item){ return item.date === todayStr; })[0];
+        $('#todayMoodHero').textContent = todayMood ? todayMood.emoji : (latest ? latest.emoji : '🙂');
+        var wrap = $('#moodCalendar');
+        wrap.innerHTML = '';
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        for(var i=1;i<=28;i++){
+          var d = new Date(year, month, i);
+          var ds = formatDate(d);
+          var found = state.moods.filter(function(item){ return item.date === ds; })[0];
+          var cell = document.createElement('div');
+          cell.className = 'calendar-cell' + (ds === todayStr ? ' today' : '');
+          cell.innerHTML = '<div class="day">' + i + '日</div>' + (found ? '<div class="dot">' + found.emoji + '</div><div class="mini-text">' + escapeHtml((found.note || '').slice(0,12)) + '</div>' : '<div class="mini-text">未记录</div>');
+          wrap.appendChild(cell);
+        }
+      }
+      function renderWishes(){
+        var wrap = $('#wishList');
+        wrap.innerHTML = '';
+        if(!state.wishes.length){ wrap.innerHTML = '<div class="empty">先写下一件最想和婷婷一起完成的事情吧。</div>'; }
+        state.wishes.forEach(function(item){
+          var div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = '<div class="item-top"><div><div class="item-title">' + (item.done ? '✅ ' : '⬜ ') + escapeHtml(item.title) + '</div><div class="item-meta">优先级：' + escapeHtml(item.priority) + '</div><div class="mini-text" style="margin-top:6px">' + escapeHtml(item.note || '没有备注') + '</div></div><div class="item-actions"><button class="icon-btn" data-toggle-wish="' + item.id + '">' + (item.done ? '改为未完成' : '完成') + '</button><button class="icon-btn" data-del-wish="' + item.id + '">删除</button></div></div>';
+          wrap.appendChild(div);
+        });
+        var done = state.wishes.filter(function(item){ return item.done; }).length;
+        var rate = state.wishes.length ? Math.round(done / state.wishes.length * 100) : 0;
+        $('#wishProgressBar').style.width = rate + '%';
+        $('#wishRateBadge').textContent = '完成率 ' + rate + '%';
+        $('#wishDoneHero').textContent = done + '/' + state.wishes.length;
+      }
+      function renderPlans(){
+        var wrap = $('#planList');
+        wrap.innerHTML = '';
+        var list = clone(state.plans).sort(function(a,b){ return a.date.localeCompare(b.date); });
+        if(!list.length){ wrap.innerHTML = '<div class="empty">还没有约会计划，快安排一个期待吧。</div>'; return; }
+        list.forEach(function(item){
+          var div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = '<div class="item-top"><div><div class="item-title">' + escapeHtml(item.title) + '</div><div class="item-meta">' + formatDisplayDate(item.date) + ' · ' + escapeHtml(item.place) + ' · ' + escapeHtml(item.status) + '</div><div class="mini-text" style="margin-top:6px">' + escapeHtml(item.note || '没有备注') + '</div></div><div class="item-actions"><button class="icon-btn" data-next-plan="' + item.id + '">切换状态</button><button class="icon-btn" data-del-plan="' + item.id + '">删除</button></div></div>';
+          wrap.appendChild(div);
+        });
+      }
+      function renderLetter(){ $('#letterText').value = state.letter || ''; }
+      function renderSettings(){
+        $('#settingBoy').value = state.profile.boyName;
+        $('#settingGirl').value = state.profile.girlName;
+        $('#settingLoveDate').value = state.profile.loveDate;
+        $('#settingPassword').value = state.profile.password;
+        $('#settingIntro').value = state.profile.intro;
+        $('#toggleHearts').checked = !!state.options.showHearts;
+        $('#toggleCover').checked = !!state.options.showCover;
+        $('#togglePassword').checked = !!state.options.passwordEnabled;
+      }
+      function renderPlaylist(){ $('#playlistText').textContent = state.options.playlist; }
+      function updateClock(){
+        var now = new Date();
+        $('#liveClock').textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+      }
+      function formatTime(ts){
+        var d = new Date(ts);
+        return d.getFullYear() + '/' + pad(d.getMonth()+1) + '/' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+      }
+      function escapeHtml(str){
+        str = str == null ? '' : String(str);
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      }
+      function escapeAttr(str){ return escapeHtml(str); }
+      function resetForms(){
+        ['annTitle','annDate','annNote','memoryTitle','memoryDate','memoryImage','memoryText','wishTitle','wishNote','planTitle','planDate','planPlace','planNote','moodNote','msgText'].forEach(function(id){ var el = document.getElementById(id); if(el) el.value = ''; });
+      }
+
+      function bindEvents(){
+        $('#enterSiteBtn').onclick = function(){ $('#welcomeCover').classList.add('hide'); };
+        $('#randomBlessBtn').onclick = function(){ $('#welcomeQuote').textContent = pick(loveQuotes); };
+        $('#surpriseBtn').onclick = openDrawer;
+        $('#loveRainBtn').onclick = function(){ createHeart(24); toast('爱心雨已经送达 ❤'); };
+        $('#closeDrawerBtn').onclick = closeDrawer;
+        $('#drawerAgainBtn').onclick = openDrawer;
+        $('#drawerCopyBtn').onclick = function(){ copyText(lastDrawerText || $('#drawerContent').textContent); };
+        $('#refreshQuoteBtn').onclick = function(){ $('#dailyQuote').textContent = pick(loveQuotes); };
+        $('#randomComfortBtn').onclick = function(){ toast(pick(comfortQuotes)); };
+        $('#drawQaBtn').onclick = function(){ $('#qaText').textContent = pick(questionCards); };
+        $('#drawConfessionBtn').onclick = function(){ $('#confessionText').textContent = pick(confessionCards); };
+        $('#editPlaylistBtn').onclick = function(){
+          var next = prompt('编辑你们的歌单，用顿号或逗号分隔：', state.options.playlist);
+          if(next !== null){ state.options.playlist = next || '《喜欢你》'; saveAndRender('歌单已更新'); }
+        };
+        $('#pickSampleImageBtn').onclick = function(){ $('#memoryImage').value = pick(sampleImages); toast('已填入一张示例图片'); };
+
+        $('#addAnnBtn').onclick = function(){
+          var title = $('#annTitle').value.trim();
+          var date = $('#annDate').value;
+          if(!title || !date) return toast('请先填写纪念日名称和日期');
+          state.anniversaries.unshift({id:id(), title:title, date:date, type:$('#annType').value, note:$('#annNote').value.trim()});
+          saveAndRender('纪念日已添加');
+          $('#annTitle').value=''; $('#annDate').value=''; $('#annNote').value='';
+        };
+        $('#resetAnnBtn').onclick = function(){ $('#annTitle').value=''; $('#annDate').value=''; $('#annNote').value=''; };
+
+        $('#addMemoryBtn').onclick = function(){
+          var title = $('#memoryTitle').value.trim();
+          var date = $('#memoryDate').value;
+          var text = $('#memoryText').value.trim();
+          if(!title || !date || !text) return toast('请先填写回忆标题、日期和内容');
+          state.memories.unshift({id:id(), title:title, date:date, tag:$('#memoryTag').value, image:$('#memoryImage').value.trim(), text:text});
+          saveAndRender('回忆已保存');
+          $('#memoryTitle').value=''; $('#memoryDate').value=''; $('#memoryImage').value=''; $('#memoryText').value='';
+        };
+
+        $('#addMsgBtn').onclick = function(){
+          var text = $('#msgText').value.trim();
+          if(!text) return toast('先写一点内容吧');
+          state.messages.unshift({id:id(), author:$('#msgAuthor').value, mood:$('#msgMood').value, text:text, time:Date.now(), pinned:false});
+          saveAndRender('留言已发布');
+          $('#msgText').value='';
+        };
+        $('#quickLoveBtn').onclick = function(){ $('#msgText').value = pick(loveQuotes); };
+
+        $all('#moodButtons .mood-btn').forEach ? $all('#moodButtons .mood-btn').forEach(bindMoodButton) : Array.prototype.forEach.call($all('#moodButtons .mood-btn'), bindMoodButton);
+        function bindMoodButton(btn){
+          btn.onclick = function(){
+            selectedMood = btn.getAttribute('data-emoji');
+            Array.prototype.forEach.call($all('#moodButtons .mood-btn'), function(item){ item.classList.remove('active'); });
+            btn.classList.add('active');
+          };
+        }
+        $('#saveMoodBtn').onclick = function(){
+          if(!selectedMood) return toast('先选一个心情');
+          var found = null;
+          for(var i=0;i<state.moods.length;i++) if(state.moods[i].date === todayStr) found = state.moods[i];
+          if(found){ found.emoji = selectedMood; found.note = $('#moodNote').value.trim(); }
+          else state.moods.push({id:id(), date:todayStr, emoji:selectedMood, note:$('#moodNote').value.trim()});
+          saveAndRender('今日心情已保存');
+        };
+
+        $('#addWishBtn').onclick = function(){
+          var title = $('#wishTitle').value.trim();
+          if(!title) return toast('先写一个愿望标题');
+          state.wishes.unshift({id:id(), title:title, priority:$('#wishPriority').value, note:$('#wishNote').value.trim(), done:false});
+          saveAndRender('愿望已添加');
+          $('#wishTitle').value=''; $('#wishNote').value='';
+        };
+        $('#addWishPresetBtn').onclick = function(){
+          var presets = [
+            {title:'一起做一顿晚餐', priority:'中', note:'哪怕简单一点也很浪漫', done:false},
+            {title:'一起去海边看日出', priority:'高', note:'提前准备相机和外套', done:false},
+            {title:'写一封纸质信给彼此', priority:'中', note:'认真写下最近的心情', done:false}
+          ];
+          state.wishes = presets.concat(state.wishes);
+          saveAndRender('已添加一组浪漫愿望');
+        };
+
+        $('#addPlanBtn').onclick = function(){
+          var title = $('#planTitle').value.trim();
+          var date = $('#planDate').value;
+          if(!title || !date) return toast('请填写计划名称和日期');
+          state.plans.unshift({id:id(), title:title, date:date, place:$('#planPlace').value.trim(), status:$('#planStatus').value, note:$('#planNote').value.trim()});
+          saveAndRender('约会计划已添加');
+          $('#planTitle').value=''; $('#planDate').value=''; $('#planPlace').value=''; $('#planNote').value='';
+        };
+        $('#addPlanPresetBtn').onclick = function(){
+          state.plans.unshift({id:id(), title:'一起喝奶茶散步', date:addDays(todayStr,2), place:'楼下商圈', status:'待安排', note:'下班之后放松一下'});
+          state.plans.unshift({id:id(), title:'周末拍情侣照片', date:addDays(todayStr,6), place:'公园', status:'待安排', note:'挑一套喜欢的衣服'});
+          saveAndRender('约会模板已添加');
+        };
+
+        $('#insertLetterPresetBtn').onclick = function(){
+          $('#letterText').value = '亲爱的婷婷，\n\n今天也想认真告诉你，我很喜欢和你在一起的感觉。谢谢你出现在我的生活里，让我开始期待普通日子的烟火气，也开始愿意把爱表达出来。\n\n希望以后，我们继续把很多小事做好，把很多小快乐攒起来，一起慢慢变成更好的我们。\n\n爱你的建伟';
+        };
+        $('#saveLetterBtn').onclick = function(){ state.letter = $('#letterText').value; saveAndRender('情书已保存'); };
+        $('#copyLetterBtn').onclick = function(){ copyText($('#letterText').value); };
+
+        $('#saveSettingsBtn').onclick = function(){
+          state.profile.boyName = $('#settingBoy').value.trim() || '建伟';
+          state.profile.girlName = $('#settingGirl').value.trim() || '婷婷';
+          state.profile.loveDate = $('#settingLoveDate').value || '2024-02-14';
+          state.profile.password = $('#settingPassword').value.trim() || '5201314';
+          state.profile.intro = $('#settingIntro').value.trim() || defaultState.profile.intro;
+          state.options.showHearts = $('#toggleHearts').checked;
+          state.options.showCover = $('#toggleCover').checked;
+          state.options.passwordEnabled = $('#togglePassword').checked;
+          saveAndRender('网站设置已保存');
+        };
+        $('#lockNowBtn').onclick = function(){ $('#lockScreen').classList.add('show'); };
+
+        $('#toggleHearts').onchange = function(){ state.options.showHearts = this.checked; saveState(); toast('漂浮爱心设置已更新'); };
+        $('#toggleCover').onchange = function(){ state.options.showCover = this.checked; saveState(); };
+        $('#togglePassword').onchange = function(){ state.options.passwordEnabled = this.checked; saveState(); };
+
+        $('#unlockBtn').onclick = tryUnlock;
+        $('#unlockInput').onkeydown = function(e){ if(e.key === 'Enter') tryUnlock(); };
+        $('#unlockHintBtn').onclick = function(){ $('#unlockHint').textContent = '提示：默认密码是 5201314，你也可以在网站设置里改掉。'; };
+
+        $('#exportBtn').onclick = exportData;
+        $('#importInput').onchange = importData;
+        $('#resetAllBtn').onclick = function(){
+          if(confirm('确定恢复默认数据吗？当前浏览器里的内容会被覆盖。')){
+            state = clone(defaultState);
+            saveAndRender('已恢复默认数据');
+          }
+        };
+
+        Array.prototype.forEach.call($all('[data-theme]'), function(btn){
+          btn.onclick = function(){ setTheme(btn.getAttribute('data-theme')); };
+        });
+
+        $('#closeModalBtn').onclick = function(){ $('#memoryModal').classList.remove('show'); };
+        $('#memoryModal').onclick = function(e){ if(e.target === this) this.classList.remove('show'); };
+
+        document.body.onclick = function(e){
+          var target = e.target;
+          if(target.getAttribute('data-del-ann')) delById('anniversaries', target.getAttribute('data-del-ann'), '纪念日已删除');
+          if(target.getAttribute('data-del-memory')) delById('memories', target.getAttribute('data-del-memory'), '回忆已删除');
+          if(target.getAttribute('data-view-memory')) viewMemory(target.getAttribute('data-view-memory'));
+          if(target.closest && target.closest('[data-view-memory]')){
+            var box = target.closest('[data-view-memory]');
+            if(box && box.getAttribute('data-view-memory')) viewMemory(box.getAttribute('data-view-memory'));
+          }
+          if(target.getAttribute('data-pin-msg')) togglePinMessage(target.getAttribute('data-pin-msg'));
+          if(target.getAttribute('data-del-msg')) delById('messages', target.getAttribute('data-del-msg'), '留言已删除');
+          if(target.getAttribute('data-toggle-wish')) toggleWish(target.getAttribute('data-toggle-wish'));
+          if(target.getAttribute('data-del-wish')) delById('wishes', target.getAttribute('data-del-wish'), '愿望已删除');
+          if(target.getAttribute('data-next-plan')) advancePlan(target.getAttribute('data-next-plan'));
+          if(target.getAttribute('data-del-plan')) delById('plans', target.getAttribute('data-del-plan'), '计划已删除');
+          if(target.classList && target.classList.contains('chip-btn')) switchFilter(target);
+        };
+      }
+
+      function switchFilter(btn){
+        Array.prototype.forEach.call($all('#memoryFilterWrap .chip-btn'), function(item){ item.classList.remove('active'); });
+        btn.classList.add('active');
+        memoryFilter = btn.getAttribute('data-filter') || '全部';
+        renderMemories();
+      }
+      function delById(key, idValue, message){
+        state[key] = state[key].filter(function(item){ return item.id !== idValue; });
+        saveAndRender(message);
+      }
+      function togglePinMessage(msgId){
+        state.messages.forEach(function(item){ if(item.id === msgId) item.pinned = !item.pinned; });
+        saveAndRender('留言状态已更新');
+      }
+      function toggleWish(wishId){
+        state.wishes.forEach(function(item){ if(item.id === wishId) item.done = !item.done; });
+        saveAndRender('愿望状态已更新');
+      }
+      function advancePlan(planId){
+        var steps = ['待安排','已预约','已完成'];
+        state.plans.forEach(function(item){
+          if(item.id === planId){
+            var index = steps.indexOf(item.status);
+            item.status = steps[(index + 1) % steps.length];
+          }
+        });
+        saveAndRender('计划状态已切换');
+      }
+      function viewMemory(memoryId){
+        var item = state.memories.filter(function(m){ return m.id === memoryId; })[0];
+        if(!item) return;
+        $('#modalTitle').textContent = item.title;
+        $('#modalMeta').textContent = item.date + ' · ' + item.tag;
+        $('#modalText').textContent = item.text;
+        if(item.image){ $('#modalImage').src = item.image; $('#modalImage').style.display = 'block'; }
+        else { $('#modalImage').style.display = 'none'; }
+        $('#memoryModal').classList.add('show');
+      }
+      function openDrawer(){
+        lastDrawerText = pick(loveQuotes) + ' ' + pick(confessionCards);
+        $('#drawerContent').textContent = lastDrawerText;
+        $('#surpriseDrawer').classList.add('show');
+      }
+      function closeDrawer(){ $('#surpriseDrawer').classList.remove('show'); }
+      function saveAndRender(message){ saveState(); renderAll(); if(message) toast(message); }
+      function tryUnlock(){
+        var value = $('#unlockInput').value;
+        if(value === state.profile.password){
+          $('#lockScreen').classList.remove('show');
+          $('#unlockInput').value = '';
+          toast('欢迎回来 ❤');
+        }else toast('密码不对，再试试');
+      }
+      function exportData(){
+        var blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = '建伟-婷婷-恋爱空间备份.json';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+      }
+      function importData(e){
+        var file = e.target.files[0];
+        if(!file) return;
+        var reader = new FileReader();
+        reader.onload = function(){
+          try{
+            var data = JSON.parse(reader.result);
+            state = mergeDeep(clone(defaultState), data);
+            saveAndRender('数据导入成功');
+          }catch(err){ toast('导入失败，文件格式不对'); }
+          e.target.value = '';
+        };
+        reader.readAsText(file, 'utf-8');
+      }
+      function copyText(text){
+        text = text || '';
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){ toast('已复制到剪贴板'); }).catch(function(){ fallbackCopy(text); });
+        }else fallbackCopy(text);
+      }
+      function fallbackCopy(text){
+        var input = document.createElement('textarea');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        try{ document.execCommand('copy'); toast('已复制到剪贴板'); }
+        catch(e){ toast('复制失败，请手动复制'); }
+        document.body.removeChild(input);
+      }
+
+      function init(){
+        bindEvents();
+        var theme = localStorage.getItem(THEME_KEY) || 'rose';
+        setTheme(theme);
+        renderAll();
+        $('#dailyQuote').textContent = pick(loveQuotes);
+        $('#welcomeQuote').textContent = pick(loveQuotes);
+        if(!state.options.showCover) $('#welcomeCover').classList.add('hide');
+        if(state.options.passwordEnabled) $('#lockScreen').classList.add('show');
+        if(state.options.showHearts) createHeart(16);
+        setInterval(updateClock, 1000);
+        setInterval(function(){ if(state.options.showHearts) createHeart(1); }, 1800);
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
