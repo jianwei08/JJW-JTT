@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beaconsfield Gold | Modern Mining & Sustainability</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F172A',  // Mineral Navy
+                            gold: '#F37321',  // Brand Orange (Replaced Gold)
+                            light: '#F9FAFB', // Pearl White
+                            gray: '#F3F4F6',  // Light Gray
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'], 
+                        serif: ['Cinzel', 'serif'],   
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations & Premium Glass Utilities */
+        .hover-lift { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255,255,255,0.8) inset; 
+        }
+
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background:
+                linear-gradient(140deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.18) 40%, rgba(255, 255, 255, 0.08) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 24px 55px -22px rgba(15, 23, 42, 0.28),
+                0 12px 24px rgba(255, 255, 255, 0.16) inset,
+                0 -10px 20px rgba(148, 163, 184, 0.08) inset;
+            backdrop-filter: blur(26px) saturate(185%);
+            -webkit-backdrop-filter: blur(26px) saturate(185%);
+        }
+
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.14) 38%, rgba(255, 255, 255, 0.04));
+            opacity: 0.95;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-card::after {
+            content: "";
+            position: absolute;
+            top: -24%;
+            left: -12%;
+            width: 72%;
+            height: 52%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.28) 42%, transparent 72%);
+            opacity: 0.75;
+            transform: rotate(-10deg);
+            filter: blur(12px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card-dark {
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.02) 100%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.42), rgba(15, 23, 42, 0.2));
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow:
+                0 30px 60px -18px rgba(2, 6, 23, 0.65),
+                0 16px 32px rgba(255, 255, 255, 0.08) inset,
+                0 -12px 24px rgba(15, 23, 42, 0.2) inset;
+        }
+
+        .glass-card-dark::before {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0.02));
+        }
+
+        .glass-card-dark::after {
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.12) 40%, transparent 72%);
+            opacity: 0.55;
+        }
+        
+        /* Smooth glowing effect for gold elements */
+        .glow-gold:hover {
+            box-shadow: 0 0 30px rgba(243, 115, 33, 0.4);
+        }
+
+        .logo-shape {
+            height: 40px; 
+            width: auto;
+            color: #F37321; 
+        }
+        
+        /* Hide default FAQ triangle */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-white text-brand-blue font-sans antialiased selection:bg-brand-gold selection:text-white relative overflow-x-hidden">
+
+    <nav class="fixed w-full bg-white backdrop-blur-xl border-b border-gray-100 shadow-[0_4px_30px_rgba(0,0,0,0.03)] z-50 transition-all duration-300">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="logo.png" alt="Beaconsfield Gold" class="h-10 w-auto drop-shadow-md">
+                    <span style="font-family: 'Cinzel', serif;" class="font-bold text-2xl xl:text-3xl tracking-widest mt-1 drop-shadow-sm">BEACONSFIELD GOLD</span>
+                </div>
+                <div class="hidden lg:flex lg:space-x-6 xl:space-x-10 font-serif font-medium text-lg xl:text-xl tracking-wider items-center whitespace-nowrap">
+                    <a href="#about" class="hover:text-brand-gold transition-colors">About</a>
+                    <a href="#values" class="hover:text-brand-gold transition-colors">Community</a>
+                    <a href="#history" class="hover:text-brand-gold transition-colors">History</a>
+                    <a href="#news" class="hover:text-brand-gold transition-colors">News</a>
+                    <a href="#team" class="hover:text-brand-gold transition-colors">Leadership</a>
+                    <a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full border border-brand-gold/70 bg-brand-gold/10 text-brand-gold shadow-[0_8px_20px_rgba(243,115,33,0.16)] hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden relative min-h-[85vh] flex items-center">
+        <!-- Company mine background -->
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('image_a1b39a.png');"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-[rgba(15,23,42,0.88)] via-[rgba(15,23,42,0.72)] to-[rgba(15,23,42,0.45)]"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-t from-[rgba(15,23,42,0.55)] via-transparent to-[rgba(15,23,42,0.25)]"></div>
+
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-[820px] lg:ml-[10%] xl:ml-[13%] pt-4 lg:pt-8">
+                <div class="inline-flex items-center border border-white/20 bg-white/5 backdrop-blur-sm px-5 md:px-7 py-2.5 text-brand-gold font-semibold tracking-[0.22em] text-xs md:text-sm uppercase mb-7 lg:mb-9">
+                    A Century of Heritage · A New Beginning
+                </div>
+
+                <h1 class="font-serif leading-[1.08] tracking-[-0.01em] text-white">
+                    <span class="block text-[3rem] sm:text-[3.8rem] md:text-[4.5rem] lg:text-[5.5rem] font-medium">Unearthing the</span>
+                    <span class="block text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7.5rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-[#FF9547] to-brand-gold mt-1">Modern Future</span>
+                    <span class="block text-[3rem] sm:text-[3.8rem] md:text-[4.5rem] lg:text-[5.5rem] font-medium mt-1">of Mining</span>
+                </h1>
+
+                <div class="w-20 h-[2px] bg-gradient-to-r from-brand-gold to-[#FF9547] mt-8 lg:mt-10 rounded-full shadow-[0_0_10px_rgba(243,115,33,0.5)]"></div>
+
+                <p class="mt-5 lg:mt-7 text-lg md:text-xl text-gray-300/90 leading-[1.85] max-w-[580px] font-light">
+                    Beaconsfield Gold is committed to reviving the glory of a century-old mine through environmentally sustainable and modern high-tech methods. We prioritize safety, blending historical heritage with innovative technology.
+                </p>
+
+                <div class="mt-8 lg:mt-10">
+                    <a href="#history" class="inline-flex items-center gap-3 bg-brand-gold text-white px-10 md:px-12 py-4 md:py-5 rounded-none hover:bg-[#D25E12] transition-all duration-300 font-bold text-base md:text-lg hover:-translate-y-1 shadow-[0_12px_28px_rgba(243,115,33,0.35)] hover:shadow-[0_18px_36px_rgba(243,115,33,0.45)] glow-gold uppercase tracking-wider">
+                        Explore Our <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="py-20 relative bg-[#F8FAFC] overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-[40rem] h-[40rem] rounded-full bg-brand-blue/5 blur-3xl z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold mb-4 tracking-wide">Our Values & Community</h2>
+                <div class="w-16 h-1 rounded-full bg-brand-gold mx-auto shadow-[0_0_10px_rgba(243,115,33,0.5)]"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-3xl hover-lift text-center group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-brand-light to-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i class="ph ph-storefront text-5xl text-brand-gold drop-shadow-md"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-2xl mb-4">We Support Local</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our operations will always put supporting local first wherever possible. We will work closely with local organizations to ensure we enhance the economic and social vibrancy of the region.
+                    </p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl hover-lift text-center group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-brand-light to-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i class="ph ph-hand-heart text-5xl text-brand-gold drop-shadow-md"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-2xl mb-4">We Put People First</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our family-friendly working culture brings together diverse ideas, strengths, interests, and cultural backgrounds to drive our business forward and succeed.
+                    </p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl hover-lift text-center group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-brand-light to-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i class="ph ph-chats-circle text-5xl text-brand-gold drop-shadow-md"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-2xl mb-4">We Listen to Our Community</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We take the time to get to know the people and groups that make up our local communities and ensure their voices and feedback are genuinely heard.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="py-20 lg:py-32 relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                
+                <div class="w-full lg:w-1/2 order-2 lg:order-1">
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold mb-6 text-brand-blue leading-tight">
+                        A Legacy of <span class="text-brand-gold drop-shadow-sm">Excellence</span> and<br>Innovation
+                    </h2>
+                    
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        Beaconsfield has a rich history of gold production dating back to the late 19th century. As the new custodians, Arete Capital Partners brings a fresh perspective combined with deep industry expertise.
+                    </p>
+                    
+                    <p class="text-gray-600 mb-10 text-lg leading-relaxed">
+                        Our track record of improving mines across Australia is built on a foundation of operational excellence and a deep respect for the environments in which we operate.
+                    </p>
+                    
+                    <ul class="space-y-5">
+                        <li class="flex items-center gap-4 bg-[#F8FAFC]/50 p-3 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <span class="w-3 h-3 rounded-full bg-brand-gold shrink-0 shadow-[0_0_8px_rgba(243,115,33,0.6)]"></span>
+                            <span class="text-gray-700 text-lg font-medium">World-class safety protocols</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-[#F8FAFC]/50 p-3 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <span class="w-3 h-3 rounded-full bg-brand-gold shrink-0 shadow-[0_0_8px_rgba(243,115,33,0.6)]"></span>
+                            <span class="text-gray-700 text-lg font-medium">Community-driven decision making</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-[#F8FAFC]/50 p-3 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <span class="w-3 h-3 rounded-full bg-brand-gold shrink-0 shadow-[0_0_8px_rgba(243,115,33,0.6)]"></span>
+                            <span class="text-gray-700 text-lg font-medium">Long-term value creation for Tasmania</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="w-full lg:w-1/2 order-1 lg:order-2 relative mt-8 lg:mt-0">
+                    <div class="glass-card p-3 md:p-5 rounded-[2.5rem] relative z-0">
+                        <img src="image_a1b39a.png" 
+                             alt="Modern Mining Operations" 
+                             class="w-full h-auto object-cover rounded-[1.8rem] aspect-[4/3] md:aspect-square lg:aspect-[4/3] shadow-inner">
+                    </div>
+
+                    <div class="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 bg-gradient-to-br from-brand-gold/95 to-[#D25E12]/95 backdrop-blur-md border border-white/30 text-white p-6 md:px-10 md:py-8 rounded-3xl shadow-[0_25px_50px_-12px_rgba(243,115,33,0.5)] z-10 hover:scale-105 hover:-translate-y-2 transition-all duration-500">
+                        <div class="absolute inset-0 bg-white/10 rounded-3xl"></div> 
+                        <div class="relative z-10">
+                            <div class="font-serif font-bold text-4xl md:text-6xl mb-2 drop-shadow-md">100+</div>
+                            <div class="text-[10px] md:text-sm font-bold tracking-[0.25em] uppercase text-white/90">Years of History</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="py-20 relative bg-[#F8FAFC] overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="font-serif text-4xl font-bold mb-4 tracking-wide">Latest Announcements</h2>
+            <div class="w-16 h-1 rounded-full bg-brand-gold mb-12 shadow-[0_0_10px_rgba(243,115,33,0.5)]"></div>
+            
+            <div class="space-y-4">
+                <a href="#" class="glass-card flex flex-col md:flex-row items-start md:items-center p-6 group transition-all duration-500 rounded-2xl hover:-translate-y-1">
+                    <div class="text-brand-gold w-48 md:w-56 shrink-0 font-bold font-serif text-2xl drop-shadow-sm uppercase tracking-wide">MAY 12, 2024</div>
+                    <div class="flex-grow mt-2 md:mt-0">
+                        <h3 class="text-xl font-semibold group-hover:text-brand-blue transition-colors">Beaconsfield Gold Announces Completion of Phase 1 Environmental Impact Assessment</h3>
+                    </div>
+                </a>
+                <a href="#" class="glass-card flex flex-col md:flex-row items-start md:items-center p-6 group transition-all duration-500 rounded-2xl hover:-translate-y-1">
+                    <div class="text-brand-gold w-48 md:w-56 shrink-0 font-bold font-serif text-2xl drop-shadow-sm uppercase tracking-wide">APRIL 08, 2024</div>
+                    <div class="flex-grow mt-2 md:mt-0">
+                        <h3 class="text-xl font-semibold group-hover:text-brand-blue transition-colors">Q1 2024 Drilling Progress Report and Core Data Release</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="mt-12 text-center">
+                <button class="bg-white border border-gray-200 text-brand-blue px-10 py-4 rounded-2xl hover:bg-brand-blue hover:text-white hover:border-brand-blue shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_30px_rgba(15,23,42,0.2)] transition-all duration-300 text-base font-bold">
+                    View All Announcements
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-24 relative bg-[#F8FAFC] overflow-hidden">
+        <div class="absolute right-[-5%] top-[-10%] w-[40vw] h-[40vw] rounded-full bg-brand-gold/15 blur-[100px] z-0 pointer-events-none"></div>
+        <div class="absolute left-[-5%] bottom-[-10%] w-[30vw] h-[30vw] rounded-full bg-brand-blue/10 blur-[100px] z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl font-bold mb-4 tracking-wide">Leadership Team</h2>
+                <div class="w-16 h-1 rounded-full bg-brand-gold mx-auto shadow-[0_0_10px_rgba(243,115,33,0.5)]"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">Composed of seasoned experts with decades of international mining experience, geological exploration, and financial management backgrounds.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                
+                <div class="glass-card relative p-10 rounded-[2.5rem] hover-lift text-center group">
+                    <div class="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none z-0"></div>
+                    
+                    <div class="relative w-40 h-40 mx-auto mb-8 z-10">
+                        <div class="absolute inset-0 bg-brand-gold rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="Jane Smith" class="relative w-40 h-40 rounded-full object-cover border-[3px] border-white shadow-xl">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-serif font-bold text-2xl mb-2">Jane Smith</h3>
+                        <p class="text-brand-gold font-bold text-sm mb-5 tracking-widest uppercase bg-brand-gold/10 inline-block px-4 py-1.5 rounded-full">Chief Geologist</p>
+                        <p class="text-gray-600 leading-relaxed text-base font-medium">An international authority on ore deposit research, responsible for building the exploration models for Beaconsfield's deep veins.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card relative p-10 rounded-[2.5rem] hover-lift text-center md:-translate-y-6 group">
+                    <div class="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none z-0"></div>
+                    
+                    <div class="relative w-40 h-40 mx-auto mb-8 z-10">
+                        <div class="absolute inset-0 bg-brand-gold rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="John Doe" class="relative w-40 h-40 rounded-full object-cover border-[3px] border-white shadow-xl">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-serif font-bold text-2xl mb-2">John Doe</h3>
+                        <p class="text-brand-gold font-bold text-sm mb-5 tracking-widest uppercase bg-brand-gold/10 inline-block px-4 py-1.5 rounded-full">CEO</p>
+                        <p class="text-gray-600 leading-relaxed text-base font-medium">Brings 25 years of global precious metals development experience, successfully leading the commissioning of multiple large-scale gold mines.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card relative p-10 rounded-[2.5rem] hover-lift text-center group">
+                    <div class="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none z-0"></div>
+                    
+                    <div class="relative w-40 h-40 mx-auto mb-8 z-10">
+                        <div class="absolute inset-0 bg-brand-gold rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" alt="Robert Chen" class="relative w-40 h-40 rounded-full object-cover border-[3px] border-white shadow-xl">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-serif font-bold text-2xl mb-2">Robert Chen</h3>
+                        <p class="text-brand-gold font-bold text-sm mb-5 tracking-widest uppercase bg-brand-gold/10 inline-block px-4 py-1.5 rounded-full">CFO</p>
+                        <p class="text-gray-600 leading-relaxed text-base font-medium">Focuses on mining M&A and capital market operations, ensuring financial robustness and maximizing shareholder value.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 relative bg-[#F8FAFC] overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl font-bold mb-4 tracking-wide">Frequently Asked Questions</h2>
+                <div class="w-16 h-1 rounded-full bg-brand-gold mx-auto shadow-[0_0_10px_rgba(243,115,33,0.5)]"></div>
+            </div>
+            
+            <div class="columns-1 md:columns-2 gap-x-10 lg:gap-x-16">
+                
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">When will the mine reopen?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        We are liaising with Tasmanian Government departments on the requirements to reactivate underground mining and gold processing. On the current indicative schedule, it is expected that the mine may return to gold production by the end of 2026.
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">Why is the mine reopening?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        With increasing gold demand and advances in modern mining technology, redeveloping the mine offers strong economic viability. We will also utilize more environmentally friendly extraction methods.
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">Why did the mine shut down?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        [Insert historical context here, e.g., Operations were previously suspended due to technical limitations and market price fluctuations at the time.]
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">How will the community be involved?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        We will hold regular community hearings and information-sharing sessions to ensure local residents stay informed on project progress, establishing dedicated channels to collect your feedback and suggestions.
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">What jobs will be available?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        We will offer a wide variety of roles spanning geological exploration, heavy machinery operation, environmental monitoring, and logistics management, with a strong priority on hiring locally.
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">Will the rehabilitation of the wetlands be completed?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        Yes, environmental protection is a core pillar of our restart plan. We pledge not only to complete the wetland rehabilitation but to implement ecological protection measures that exceed all previous standards.
+                    </div>
+                </details>
+
+                <details class="glass-card group rounded-2xl hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300 relative z-20 break-inside-avoid inline-block w-full mb-8">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 md:p-8 text-xl hover:text-brand-gold transition-colors">
+                        <span class="pr-6">Feedback</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold shrink-0"><i class="ph ph-caret-down text-2xl"></i></span>
+                    </summary>
+                    <div class="text-gray-600 p-6 md:p-8 pt-0 leading-relaxed border-t border-gray-50 mt-2 text-lg">
+                        We value your voice. You can reach out to us via the contact form at the bottom of this page or by emailing our dedicated community engagement inbox.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-brand-blue text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-gold/10 via-brand-blue to-brand-blue z-0 pointer-events-none"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-brand-gold/20 blur-[100px] z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold mb-6 tracking-wide drop-shadow-md">Join Us / Contact Us</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-gold mb-10 shadow-[0_0_15px_rgba(243,115,33,0.8)]"></div>
+                    <p class="text-gray-300 mb-12 leading-relaxed text-lg lg:text-xl font-light">
+                        We are looking for passionate professionals committed to safety and environmental protection to join our team. Whether you are an experienced geologist or a potential business partner, we look forward to hearing from you.
+                    </p>
+                    
+                    <div class="space-y-10">
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/50 transition-all duration-300">
+                                <i class="ph ph-map-pin text-brand-gold text-2xl drop-shadow-[0_0_8px_rgba(243,115,33,0.8)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 tracking-wide">Head Office</h4>
+                                <p class="text-gray-400 text-base leading-relaxed font-light">123 Mining Avenue, Corporate District<br>Tasmania, Australia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/50 transition-all duration-300">
+                                <i class="ph ph-envelope-simple text-brand-gold text-2xl drop-shadow-[0_0_8px_rgba(243,115,33,0.8)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 tracking-wide">Email</h4>
+                                <p class="text-gray-400 text-base leading-relaxed font-light">Business: info@beaconsfieldgold.com.au<br>Careers: careers@beaconsfieldgold.com.au</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card glass-card-dark p-10 lg:p-12 rounded-[2.5rem] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-[2.5rem] pointer-events-none"></div>
+                    
+                    <h3 class="font-serif font-bold text-3xl mb-8 relative z-10">Send a Message</h3>
+                    <form class="space-y-6 relative z-10">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-wide">Name</label>
+                            <input type="text" class="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:bg-black/40 transition-all duration-300 backdrop-blur-md shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-wide">Email Address</label>
+                            <input type="email" class="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:bg-black/40 transition-all duration-300 backdrop-blur-md shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 tracking-wide">Message</label>
+                            <textarea rows="4" class="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:bg-black/40 transition-all duration-300 backdrop-blur-md shadow-inner"></textarea>
+                        </div>
+                        <button type="button" class="w-full bg-gradient-to-r from-brand-gold to-[#D25E12] text-white font-bold text-lg py-4 rounded-xl hover:shadow-[0_10px_25px_rgba(243,115,33,0.4)] hover:-translate-y-1 transition-all duration-300 glow-gold">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-blue border-t border-white/5 py-10 text-center text-gray-500 text-sm font-light relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Beaconsfield Gold Pty Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
